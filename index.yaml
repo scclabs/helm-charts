@@ -1,0 +1,14 @@
+apiVersion: v1
+entries:
+  inference:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2023-11-01T10:31:53.012458643Z"
+    description: A Helm chart for Kubernetes
+    digest: a567e556c537713dfa09baab5a4d74dbe025c00b4533afadf109772656cc9a40
+    name: inference
+    type: application
+    urls:
+    - https://github.com/scclabs/helm-charts/releases/download/inference-0.1.1/inference-0.1.1.tgz
+    version: 0.1.1
+generated: "2023-11-01T10:31:53.012469944Z"
