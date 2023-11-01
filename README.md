@@ -10,7 +10,7 @@ Please refer to Helm's [documentation](https://helm.sh/docs/) to get started.
 Once Helm is set up properly, add the repository as follows:
 
 ```console
-helm repo add prometheus-community https://scclabs.github.io/helm-charts
+helm repo add scclabs https://scclabs.github.io/helm-charts
 ```
 
 You can then run `helm search repo scclabs` to see the charts.
