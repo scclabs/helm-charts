@@ -36,10 +36,6 @@ securityContext:
   # runAsNonRoot: true
   # runAsUser: 1000
 
-service:
-  type: ClusterIP
-  port: 80
-
 ingress:
   enabled: true
   className: ""
@@ -48,11 +44,9 @@ ingress:
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
   domain: example.com
-  hosts:
-    - host:
-      paths:
-        - path: /
-          pathType: ImplementationSpecific
+  path:
+    name: /
+    port: 80
   tls: []
   #  - secretName: chart-example-tls
   #    hosts:

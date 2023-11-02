@@ -2,14 +2,11 @@ apiVersion: v1
 kind: Service
 metadata:
   name: {{ include "inference.fullname" . }}
-  labels:
-    {{- include "inference.labels" . | nindent 4 }}
+  labels: {{- include "inference.labels" . | nindent 4 }}
 spec:
-  type: {{ .Values.service.type }}
   ports:
-    - port: {{ .Values.service.port }}
+    - port: {{ .Values.ingress.path.port }}
       targetPort: http
       protocol: TCP
       name: http
-  selector:
-    {{- include "inference.selectorLabels" . | nindent 4 }}
+  selector: {{- include "inference.selectorLabels" . | nindent 4 }}
