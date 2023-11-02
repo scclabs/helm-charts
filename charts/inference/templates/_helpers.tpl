@@ -60,3 +60,11 @@ Create the name of the service account to use
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
 {{- end }}
+
+{{/*
+Create the name of the ingress host to use
+*/}}
+{{- define "inference.ingressHost" -}}
+{{- $fullName := include "inference.fullname" . -}}
+{{- printf "%s-%s.%s" $fullName .Release.Namespace .Values.ingress.domain }}
+{{- end }}
