@@ -37,6 +37,11 @@ spec:
             - name: http
               containerPort: {{ .Values.ingress.path.port }}
               protocol: TCP
+            {{- if .Values.ingress.path1 }}
+            - name: http1
+              containerPort: {{ .Values.ingress.path1.port }}
+              protocol: TCP
+            {{- end }}
           livenessProbe:
             httpGet:
               path: /

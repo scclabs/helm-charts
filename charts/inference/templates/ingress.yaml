@@ -47,4 +47,13 @@ spec:
                 name: {{ $fullName }}
                 port:
                   number: {{ .Values.ingress.path.port }}
+          {{- if .Values.ingress.path1 }}
+          - path: {{ .Values.ingress.path1.name }}
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ $fullName }}
+                port:
+                  number: {{ .Values.ingress.path1.port }}
+          {{- end}}
 {{- end }}

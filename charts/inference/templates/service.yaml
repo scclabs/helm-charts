@@ -9,4 +9,10 @@ spec:
       targetPort: http
       protocol: TCP
       name: http
+    {{- if .Values.ingress.path1 }}
+    - port: {{ .Values.ingress.path1.port }}
+      targetPort: http1
+      protocol: TCP
+      name: http1
+    {{- end }}
   selector: {{- include "inference.selectorLabels" . | nindent 4 }}

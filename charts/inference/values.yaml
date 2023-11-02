@@ -47,6 +47,10 @@ ingress:
   path:
     name: /
     port: 80
+  path1:
+    {}
+    # name: /api
+    # port: 8080
   tls: []
   #  - secretName: chart-example-tls
   #    hosts:
