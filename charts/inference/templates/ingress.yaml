@@ -40,20 +40,17 @@ spec:
     - host: {{ $ingressHost | quote }}
       http:
         paths:
-          - path: {{ .Values.ingress.path.name }}
+          {{- range $key, $value := .Values.ingress }}
+          {{- if hasPrefix "path" $key }}
+          {{- with $value }}
+          - path: {{ .name }}
             pathType: Prefix
             backend:
               service:
                 name: {{ $fullName }}
                 port:
-                  number: {{ .Values.ingress.path.port }}
-          {{- if .Values.ingress.path1 }}
-          - path: {{ .Values.ingress.path1.name }}
-            pathType: Prefix
-            backend:
-              service:
-                name: {{ $fullName }}
-                port:
-                  number: {{ .Values.ingress.path1.port }}
-          {{- end}}
+                  number: {{ .port }}
+          {{- end }}
+          {{- end }}
+          {{- end }}
 {{- end }}

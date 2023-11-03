@@ -5,14 +5,15 @@ metadata:
   labels: {{- include "inference.labels" . | nindent 4 }}
 spec:
   ports:
-    - port: {{ .Values.ingress.path.port }}
+    {{- range $key, $value := .Values.ingress }}
+    {{- if hasPrefix "path" $key }}
+    {{- with $value }}
+    {{- $index := $key | trimPrefix "path" }}
+    - port: {{ .port }}
       targetPort: http
       protocol: TCP
-      name: http
-    {{- if .Values.ingress.path1 }}
-    - port: {{ .Values.ingress.path1.port }}
-      targetPort: http1
-      protocol: TCP
-      name: http1
+      name: http{{ $index }}
+    {{- end }}
+    {{- end }}
     {{- end }}
   selector: {{- include "inference.selectorLabels" . | nindent 4 }}

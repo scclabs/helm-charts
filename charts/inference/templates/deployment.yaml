@@ -34,13 +34,15 @@ spec:
           image: "{{ .Values.image.name }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
-            - name: http
-              containerPort: {{ .Values.ingress.path.port }}
+            {{- range $key, $value := .Values.ingress }}
+            {{- if hasPrefix "path" $key }}
+            {{- with $value }}
+            {{- $index := $key | trimPrefix "path" }}
+            - name: http{{ $index }}
+              containerPort: {{ .port }}
               protocol: TCP
-            {{- if .Values.ingress.path1 }}
-            - name: http1
-              containerPort: {{ .Values.ingress.path1.port }}
-              protocol: TCP
+            {{- end }}
+            {{- end }}
             {{- end }}
           livenessProbe:
             httpGet:
