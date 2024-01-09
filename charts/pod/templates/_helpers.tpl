@@ -66,7 +66,7 @@ Common ingress annotations
 */}}
 {{- define "ingress.annotations" -}}
 {{- if .Values.ingress.tls }}
-cert-manager.io/cluster-issuer: letsencrypt-prod
+cert-manager.io/cluster-issuer: letsencrypt
 {{- end }}
 {{- with .Values.ingress.annotations }}
 {{- toYaml . }}

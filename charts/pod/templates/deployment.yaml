@@ -40,8 +40,7 @@ spec:
             - --config
             - /etc/pod/pod.yaml
           env:
-            - name: KUBECONFIG
-              value: /etc/pod/config
+            {{- toYaml .Values.env | nindent 12 }}
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}
