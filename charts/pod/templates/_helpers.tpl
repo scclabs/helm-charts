@@ -1,4 +1,23 @@
 {{/*
+Generate a random jupyter token.
+*/}}
+{{- define "jupyter.random_token" -}}
+{{- /* Create "tmp_vars" dict inside ".Release" to store various stuff. */ -}}
+{{- if not (index .Release "tmp_vars") -}}
+{{-   $_ := set .Release "tmp_vars" dict -}}
+{{- end -}}
+{{- /* Some random ID of this token, in case there will be other random values alongside this instance. */ -}}
+{{- $key := printf "%s_%s" .Release.Name "token" -}}
+{{- /* If $key does not yet exist in .Release.tmp_vars, then... */ -}}
+{{- if not (index .Release.tmp_vars $key) -}}
+{{- /* ... store random token under the $key */ -}}
+{{-   $_ := set .Release.tmp_vars $key (randAlphaNum 32) -}}
+{{- end -}}
+{{- /* Retrieve previously generated value. */ -}}
+{{- index .Release.tmp_vars $key -}}
+{{- end -}}
+
+{{/*
 Expand the name of the chart.
 */}}
 {{- define "pod.name" -}}
@@ -14,7 +33,7 @@ If release name contains chart name it will be used as a full name.
 {{- if .Values.fullnameOverride }}
 {{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" }}
 {{- else }}
-{{- $name := default .Chart.Name .Values.nameOverride }}
+{{- $name := default .Values.nameOverride }}
 {{- if contains $name .Release.Name }}
 {{- .Release.Name | trunc 63 | trimSuffix "-" }}
 {{- else }}
@@ -66,9 +85,17 @@ Common ingress annotations
 */}}
 {{- define "ingress.annotations" -}}
 {{- if .Values.ingress.tls }}
-cert-manager.io/cluster-issuer: letsencrypt
+cert-manager.io/cluster-issuer: letsencrypt-prod
 {{- end }}
 {{- with .Values.ingress.annotations }}
 {{- toYaml . }}
 {{- end }}
+{{- end }}
+
+{{/*
+Create the name of the ingress host to use
+*/}}
+{{- define "ingress.host" -}}
+{{- $fullName := include "pod.fullname" . -}}
+{{- printf "%s-x-%s.%s" $fullName .Release.Namespace .Values.ingress.domain }}
 {{- end }}
