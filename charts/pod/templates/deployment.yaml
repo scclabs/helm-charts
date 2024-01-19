@@ -13,8 +13,9 @@ spec:
       {{- include "pod.selectorLabels" . | nindent 6 }}
   template:
     metadata:
-      {{- with .Values.podAnnotations }}
       annotations:
+        k8s.scclabs.dev/jupyter-token: {{ .Values.jupyter.token | default (include "jupyter.random_token" .) }}
+      {{- with .Values.podAnnotations }}
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
