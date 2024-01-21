@@ -96,6 +96,10 @@ cert-manager.io/cluster-issuer: letsencrypt-prod
 Create the name of the ingress host to use
 */}}
 {{- define "ingress.host" -}}
+{{- if .Values.ingress.host }}
+{{- .Values.ingress.host }}
+{{- else }}
 {{- $fullName := include "pod.fullname" . -}}
 {{- printf "%s-x-%s.%s" $fullName .Release.Namespace .Values.ingress.domain }}
+{{- end }}
 {{- end }}

@@ -51,6 +51,8 @@ service:
   port: 8888
 
 ingress:
+  enabled: false
+  #host: "mypod.example.com"
   #domain: "example.com"
   className: ""
   annotations:

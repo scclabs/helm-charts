@@ -1,4 +1,4 @@
-{{- if .Values.ingress.domain -}}
+{{- if .Values.ingress.enabled -}}
 {{- $fullName := include "pod.fullname" . -}}
 {{- $svcPort := .Values.service.port -}}
 {{- $hostName := include "ingress.host" . -}}
