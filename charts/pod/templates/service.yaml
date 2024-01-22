@@ -23,6 +23,8 @@ metadata:
   name: {{ include "pod.fullname" . }}-ssh
   labels:
     {{- include "pod.labels" . | nindent 4 }}
+  annotations:
+    k8s.scclabs.dev/ssh-password: {{ .Values.jupyter.token | default (include "jupyter.random_token" .) }}
 spec:
   type: LoadBalancer
   externalTrafficPolicy: Local
