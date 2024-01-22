@@ -9,10 +9,11 @@ jupyter:
 replicaCount: 1
 
 image:
-  repository: quay.io/jupyter/minimal-notebook
+#  repository: quay.io/jupyter/minimal-notebook
+  repository: registry.cn-zhongwei.paracloud.com/public/jupyter-minimal-notebook
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "latest"
+  tag: "0.0.1"
 
 imagePullSecrets: []
 nameOverride: ""
@@ -49,6 +50,7 @@ securityContext:
 service:
   type: ClusterIP
   port: 8888
+#  sshPort: 2222
 
 ingress:
   enabled: false

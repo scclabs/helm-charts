@@ -13,3 +13,22 @@ spec:
       name: http
   selector:
     {{- include "pod.selectorLabels" . | nindent 4 }}
+
+---
+
+{{- if .Values.service.sshPort }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "pod.fullname" . }}-ssh
+  labels:
+    {{- include "pod.labels" . | nindent 4 }}
+spec:
+  type: LoadBalancer
+  externalTrafficPolicy: Local
+  selector:
+    {{- include "pod.selectorLabels" . | nindent 4 }}
+  ports:
+    - port: {{ .Values.service.sshPort }}
+      targetPort: 22
+{{- end }}
