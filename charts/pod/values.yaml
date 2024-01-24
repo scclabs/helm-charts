@@ -10,10 +10,10 @@ replicaCount: 1
 
 image:
 #  repository: quay.io/jupyter/minimal-notebook
-  repository: registry.cn-zhongwei.paracloud.com/public/jupyter-minimal-notebook
+  repository: cr.dev1.paracloud.com/pod/jupyter-minimal-notebook
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "0.0.1"
+  tag: "0.0.3"
 
 imagePullSecrets: []
 nameOverride: ""
@@ -58,7 +58,7 @@ ingress:
   #domain: "example.com"
   className: ""
   annotations:
-    {}
+    nginx.ingress.kubernetes.io/proxy-body-size: 5000m
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
   tls: false
