@@ -85,7 +85,12 @@ Common ingress annotations
 */}}
 {{- define "ingress.annotations" -}}
 {{- if .Values.ingress.tls }}
-cert-manager.io/cluster-issuer: letsencrypt-prod
+{{- $_ := set .Values.ingress.annotations "cert-manager.io/cluster-issuer" "letsencrypt-prod" }}
+{{- end }}
+{{- if and .Values.ingress.className (not (semverCompare ">=1.18-0" .Capabilities.KubeVersion.GitVersion)) }}
+  {{- if not (hasKey .Values.ingress.annotations "kubernetes.io/ingress.class") }}
+  {{- $_ := set .Values.ingress.annotations "kubernetes.io/ingress.class" .Values.ingress.className}}
+  {{- end }}
 {{- end }}
 {{- with .Values.ingress.annotations }}
 {{- toYaml . }}
