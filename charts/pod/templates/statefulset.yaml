@@ -4,6 +4,8 @@ metadata:
   name: {{ include "pod.fullname" . }}
   namespace: {{ .Release.Namespace }}
   labels:
+    app: pod
+    release: "{{ .Release.Name }}"
     {{- include "pod.labels" . | nindent 4 }}
 spec:
   replicas: {{ .Values.replicaCount }}
@@ -19,6 +21,8 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
+        app: pod
+        release: "{{ .Release.Name }}"
         {{- include "pod.labels" . | nindent 8 }}
 	  {{- with .Values.podLabels }}
         {{- toYaml . | nindent 8 }}
