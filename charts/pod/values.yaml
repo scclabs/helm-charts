@@ -9,7 +9,7 @@ jupyter:
 replicaCount: 1
 
 image:
-#  repository: quay.io/jupyter/minimal-notebook
+  #  repository: quay.io/jupyter/minimal-notebook
   repository: cr.dev1.paracloud.com/pod/jupyter-minimal-notebook
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
@@ -30,7 +30,10 @@ serviceAccount:
   # If not set and create is true, a name is generated using the fullname template
   name: ""
 
+annotations: {}
 podAnnotations: {}
+
+labels: {}
 podLabels: {}
 
 podSecurityContext:
