@@ -1,0 +1,60 @@
+# These annotations will be applied to all objects created in this chart
+globalAnnotations: {}
+
+isolation:
+  enabled: true
+  namespace: null
+
+  podSecurityStandard: baseline
+
+  resourceQuotas:
+    enabled: true
+    quota:
+      requests.cpu: 128
+      requests.memory: 512Gi
+      requests.storage: "1Ti"
+      requests.ephemeral-storage: 240Gi
+      limits.cpu: 128
+      limits.memory: 512Gi
+      limits.ephemeral-storage: 240Gi
+      services.nodeports: 10
+      services.loadbalancers: 10
+      count/endpoints: 400
+      count/pods: 128
+      count/services: 128
+      count/secrets: 640
+      count/configmaps: 640
+      count/persistentvolumeclaims: 128
+    scopeSelector:
+      matchExpressions:
+    scopes:
+
+  limitRange:
+    enabled: true
+    default:
+      ephemeral-storage: 20Gi
+      memory: 2Gi
+      cpu: "1"
+    defaultRequest:
+      ephemeral-storage: 20Gi
+      memory: 2Gi
+      cpu: "1"
+
+  networkPolicy:
+    enabled: true
+    outgoingConnections:
+      ipBlock:
+        cidr: 0.0.0.0/0
+        except:
+          - 100.64.0.0/10
+          - 127.0.0.0/8
+          - 10.0.0.0/8
+          - 172.16.0.0/12
+          - 192.168.0.0/16
+      egress:
+        - ports:
+            - port: 3128
+              protocol: TCP
+          to:
+            - ipBlock:
+                cidr: 10.255.128.100/28
