@@ -48,6 +48,17 @@ entries:
     urls:
     - https://github.com/scclabs/helm-charts/releases/download/inference-0.1.1/inference-0.1.1.tgz
     version: 0.1.1
+  isolation:
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2024-02-03T13:37:12.514334712Z"
+    description: A Helm chart for Kubernetes namespace isolation
+    digest: 63804d20436baefcf25c8ae60708cbee4be8964de2bf57a9d17c87c38e5557bd
+    name: isolation
+    type: application
+    urls:
+    - https://github.com/scclabs/helm-charts/releases/download/isolation-0.1.0/isolation-0.1.0.tgz
+    version: 0.1.0
   ns:
   - apiVersion: v2
     appVersion: 1.0.0
@@ -234,4 +245,4 @@ entries:
     urls:
     - https://github.com/scclabs/helm-charts/releases/download/pod-0.1.0/pod-0.1.0.tgz
     version: 0.1.0
-generated: "2024-02-03T13:14:26.962151593Z"
+generated: "2024-02-03T13:37:12.514412497Z"
