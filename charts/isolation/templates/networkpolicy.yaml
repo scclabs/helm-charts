@@ -1,9 +1,9 @@
-{{- if and .Values.isolation.enabled .Values.isolation.networkPolicy.enabled }}
+{{- if .Values.networkPolicy.enabled }}
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
   name: {{ .Release.Name }}-workloads
-  namespace: {{ .Values.isolation.namespace | default .Release.Namespace }}
+  namespace: {{ .Values.namespace | default .Release.Namespace }}
   {{- if .Values.globalAnnotations }}
   annotations:
 {{ toYaml .Values.globalAnnotations | indent 4 }}
@@ -22,14 +22,14 @@ spec:
     - to:
         - namespaceSelector: 
             matchLabels:
-                name: {{ .Values.isolation.namespace | default .Release.Namespace }}
+                name: {{ .Values.namespace | default .Release.Namespace }}
         - ipBlock:
-            cidr: {{ .Values.isolation.networkPolicy.outgoingConnections.ipBlock.cidr }}
+            cidr: {{ .Values.networkPolicy.outgoingConnections.ipBlock.cidr }}
             except:
-              {{- range .Values.isolation.networkPolicy.outgoingConnections.ipBlock.except }}
+              {{- range .Values.networkPolicy.outgoingConnections.ipBlock.except }}
               - {{ . }}
               {{- end }}
-    {{- with .Values.isolation.networkPolicy.outgoingConnections.egress }}
+    {{- with .Values.networkPolicy.outgoingConnections.egress }}
     {{ . | toYaml | nindent 4 }}
     {{- end }}
   policyTypes:
