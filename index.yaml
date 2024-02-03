@@ -48,6 +48,17 @@ entries:
     urls:
     - https://github.com/scclabs/helm-charts/releases/download/inference-0.1.1/inference-0.1.1.tgz
     version: 0.1.1
+  ns:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2024-02-03T12:59:31.769694938Z"
+    description: A Helm chart for Kubernetes
+    digest: 5809514bc2789c1787b21e06b3f48a3c5f5cfe2299f0834d3f206b6a7e4d4426
+    name: ns
+    type: application
+    urls:
+    - https://github.com/scclabs/helm-charts/releases/download/ns-0.1.0/ns-0.1.0.tgz
+    version: 0.1.0
   pod:
   - apiVersion: v2
     created: "2024-02-01T15:01:53.33529994Z"
@@ -203,4 +214,4 @@ entries:
     urls:
     - https://github.com/scclabs/helm-charts/releases/download/pod-0.1.0/pod-0.1.0.tgz
     version: 0.1.0
-generated: "2024-02-01T15:01:53.335419651Z"
+generated: "2024-02-03T12:59:31.769757365Z"
