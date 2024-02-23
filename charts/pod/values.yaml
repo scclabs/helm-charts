@@ -27,6 +27,12 @@ serviceAccount:
   # If not set and create is true, a name is generated using the fullname template
   name: ""
 
+dockerconfig:
+  {}
+  #auths:
+  #  ghcr.io:
+  #    auth: base64-encode-with-username-and-password
+
 annotations: {}
 podAnnotations: {}
 
