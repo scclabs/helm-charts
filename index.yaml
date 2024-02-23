@@ -51,6 +51,16 @@ entries:
   isolation:
   - apiVersion: v2
     appVersion: 1.0.0
+    created: "2024-02-23T06:05:07.411187829Z"
+    description: A Helm chart for Kubernetes namespace isolation
+    digest: 5dd49e5ab2e12d930434c690b0db24a5407801c56e0c45811c9efd32c8208fa8
+    name: isolation
+    type: application
+    urls:
+    - https://github.com/scclabs/helm-charts/releases/download/isolation-0.1.1/isolation-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
+    appVersion: 1.0.0
     created: "2024-02-03T13:37:12.514334712Z"
     description: A Helm chart for Kubernetes namespace isolation
     digest: 63804d20436baefcf25c8ae60708cbee4be8964de2bf57a9d17c87c38e5557bd
@@ -263,4 +273,4 @@ entries:
     urls:
     - https://github.com/scclabs/helm-charts/releases/download/pod-0.1.0/pod-0.1.0.tgz
     version: 0.1.0
-generated: "2024-02-23T03:21:46.626554846Z"
+generated: "2024-02-23T06:05:07.411267258Z"
