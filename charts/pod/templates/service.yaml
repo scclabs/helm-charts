@@ -30,7 +30,6 @@ metadata:
     metallb.universe.tf/allow-shared-ip: "scclabs-pod-ssh-shared-ip-key"
 spec:
   type: LoadBalancer
-  externalTrafficPolicy: Local
   selector:
     {{- include "pod.selectorLabels" . | nindent 4 }}
   ports:
