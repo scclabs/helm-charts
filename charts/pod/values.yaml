@@ -9,11 +9,8 @@ jupyter:
 replicaCount: 1
 
 image:
-  #  repository: quay.io/jupyter/minimal-notebook
-  repository: cr.dev1.paracloud.com/pod/pytorch
-  pullPolicy: IfNotPresent
-  # Overrides the image tag whose default is the chart appVersion.
-  tag: "20.12-py3"
+  name: cr.dev1.paracloud.com/pod/pytorch:latest
+  pullPolicy: Always
 
 imagePullSecrets: []
 nameOverride: ""
