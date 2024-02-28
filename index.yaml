@@ -113,6 +113,16 @@ entries:
   pod:
   - apiVersion: v2
     appVersion: 0.1.0
+    created: "2024-02-28T09:21:01.737790163Z"
+    description: A Helm chart for Kubernetes
+    digest: 06c6b9c65bac8ecbec581bbbea31ac8e2f9e0bea8d0623e3c1c64781e5cf7c71
+    name: pod
+    type: application
+    urls:
+    - https://github.com/scclabs/helm-charts/releases/download/pod-0.6.0/pod-0.6.0.tgz
+    version: 0.6.0
+  - apiVersion: v2
+    appVersion: 0.1.0
     created: "2024-02-25T08:38:29.66230444Z"
     description: A Helm chart for Kubernetes
     digest: 53239cd9bc9d477fb56dc2b22356daf2bc9637c50d365372f6c43fe602199bd4
@@ -343,4 +353,4 @@ entries:
     urls:
     - https://github.com/scclabs/helm-charts/releases/download/pod-0.1.0/pod-0.1.0.tgz
     version: 0.1.0
-generated: "2024-02-25T08:38:29.662641045Z"
+generated: "2024-02-28T09:21:01.738040561Z"
