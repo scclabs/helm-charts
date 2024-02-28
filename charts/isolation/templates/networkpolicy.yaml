@@ -4,6 +4,10 @@ kind: NetworkPolicy
 metadata:
   name: {{ .Release.Name }}-workloads
   namespace: {{ .Values.namespace | default .Release.Namespace }}
+  {{- if .Values.globalLabels }}
+  labels:
+  {{ toYaml .Values.globalLabels | indent 4 }}
+  {{- end }}
   {{- if .Values.globalAnnotations }}
   annotations:
 {{ toYaml .Values.globalAnnotations | indent 4 }}
@@ -40,6 +44,14 @@ kind: NetworkPolicy
 metadata:
   name: {{ .Release.Name }}-control-plane
   namespace: {{ .Release.Namespace }}
+  {{- if .Values.globalLabels }}
+  labels:
+  {{ toYaml .Values.globalLabels | indent 4 }}
+  {{- end }}
+  {{- if .Values.globalAnnotations }}
+  annotations:
+{{ toYaml .Values.globalAnnotations | indent 4 }}
+  {{- end }}
 spec:
   podSelector: {}
   egress:

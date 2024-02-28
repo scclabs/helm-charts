@@ -4,6 +4,10 @@ kind: LimitRange
 metadata:
   name: {{ .Release.Name }}-limit-range
   namespace: {{ .Values.namespace | default .Release.Namespace }}
+  {{- if .Values.globalLabels }}
+  labels:
+  {{ toYaml .Values.globalLabels | indent 4 }}
+  {{- end }}
   {{- if .Values.globalAnnotations }}
   annotations:
 {{ toYaml .Values.globalAnnotations | indent 4 }}
