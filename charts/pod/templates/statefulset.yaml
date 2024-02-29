@@ -21,7 +21,7 @@ spec:
   template:
     metadata:
       annotations:
-        k8s.scclabs.dev/jupyter-token: {{ .Values.jupyter.token | default (include "jupyter.random_token" .) }}
+        pod.scclabs.dev/jupyter-token: {{ .Values.jupyter.token | default (include "jupyter.random_token" .) }}
       {{- with .Values.podAnnotations }}
         {{- toYaml . | nindent 8 }}
       {{- end }}
@@ -29,8 +29,6 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
-        app: pod
-        release: "{{ .Release.Name }}"
         {{- include "pod.labels" . | nindent 8 }}
 	      {{- with .Values.podLabels }}
         {{- toYaml . | nindent 8 }}

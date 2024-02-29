@@ -26,7 +26,7 @@ metadata:
   labels:
     {{- include "pod.labels" . | nindent 4 }}
   annotations:
-    k8s.scclabs.dev/ssh-password: {{ .Values.jupyter.token | default (include "jupyter.random_token" .) }}
+    pod.scclabs.dev/ssh-password: {{ .Values.jupyter.token | default (include "jupyter.random_token" .) }}
     metallb.universe.tf/allow-shared-ip: "scclabs-pod-ssh-shared-ip-key"
 spec:
   type: LoadBalancer
