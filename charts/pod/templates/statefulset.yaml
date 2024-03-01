@@ -59,16 +59,6 @@ spec:
             value: "yes"
           - name: JUPYTER_TOKEN
             value: {{ .Values.jupyter.token | default (include "jupyter.random_token" .) }}
-          livenessProbe:
-            httpGet:
-              path: /
-              port: http
-            failureThreshold: 30
-          readinessProbe:
-            httpGet:
-              path: /
-              port: http
-            failureThreshold: 30
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           {{- with .Values.volumeMounts }}
