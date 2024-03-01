@@ -22,15 +22,18 @@ spec:
     metadata:
       annotations:
         pod.scclabs.dev/jupyter-token: {{ .Values.jupyter.token | default (include "jupyter.random_token" .) }}
-      {{- with .Values.podAnnotations }}
+        {{- with .Values.podAnnotations }}
         {{- toYaml . | nindent 8 }}
-      {{- end }}
-      {{- with .Values.annotations }}
+        {{- end }}
+        {{- with .Values.annotations }}
         {{- toYaml . | nindent 8 }}
-      {{- end }}
+        {{- end }}
       labels:
         {{- include "pod.labels" . | nindent 8 }}
 	      {{- with .Values.podLabels }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
+        {{- with .Values.labels }}
         {{- toYaml . | nindent 8 }}
         {{- end }}
     spec:
