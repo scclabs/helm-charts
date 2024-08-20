@@ -35,5 +35,5 @@ jobs:
       - name: Upload to ChartMuseum
         run: |
           if [ -d .cr-release-packages ]; then
-            find .cr-release-packages -type f -exec curl --data-binary "@{}" --user "${{ secrets.CM_USER }}:${{ secrets.CM_PW }}" https://helm.dev.paratera.com/api/charts \;
+            find .cr-release-packages -type f -exec curl --data-binary "@{}" --user "${{ secrets.CM_USER }}:${{ secrets.CM_PW }}" https://helm.zw1.paratera.com/api/charts \;
           fi
