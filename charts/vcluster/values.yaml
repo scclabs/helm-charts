@@ -1,0 +1,108 @@
+# Default values for k8s.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+networkPolicy:
+  enabled: true
+
+vcluster:
+  sync:
+    fromHost:
+      ingressClasses:
+        enabled: true
+      storageClasses:
+        enabled: true
+    toHost:
+      ingresses:
+        enabled: true
+      persistentVolumes:
+        enabled: true
+  # Configure vCluster's control plane components and deployment.
+  controlPlane:
+    distro:
+      k3s:
+        enabled: true
+    backingStore:
+      etcd:
+        deploy:
+          enabled: true
+          statefulSet:
+            highAvailability: 
+              replicas: 3
+            scheduling:
+              affinity:
+                nodeAffinity:
+                  preferredDuringSchedulingIgnoredDuringExecution:
+                  - weight: 50
+                    preference:
+                      matchExpressions:
+                      - key: node-role.kubernetes.io/control-plane
+                        operator: Exists
+              tolerations:
+              - key: node-role.kubernetes.io/control-plane
+                operator: Exists
+                effect: NoSchedule
+            persistence:
+              volumeClaim:
+                storageClass: "local-path"
+    coredns:
+      deployment:
+        replicas: 2
+    ingress:
+      spec:
+        ingressClassName: nginx
+    statefulSet:
+      highAvailability:
+        replicas: 2
+      scheduling:
+        affinity:
+          nodeAffinity:
+            preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 50
+              preference:
+                matchExpressions:
+                - key: node-role.kubernetes.io/control-plane
+                  operator: Exists
+        tolerations:
+        - key: node-role.kubernetes.io/control-plane
+          operator: Exists
+          effect: NoSchedule
+      
+  policies:
+    resourceQuota:
+      enabled: true
+      quota:
+        requests.cpu: "100"
+        requests.memory: 520Gi
+        requests.storage: 1000Gi
+        requests.ephemeral-storage: 300Gi
+        requests.nvidia.com/gpu: "8"
+        limits.cpu: "100"
+        limits.memory: 520Gi
+        limits.ephemeral-storage: 300Gi
+        services.loadbalancers: "0"
+        services.nodeports: "100"
+        count/endpoints: "200"
+        count/pods: "100"
+        count/services: "100"
+        count/secrets: "500"
+        count/configmaps: "500"
+        count/persistentvolumeclaims: "100"
+    limitRange:
+      enabled: true
+      default:
+        cpu: "1"
+        memory: "2Gi"
+        ephemeral-storage: null
+      defaultRequest:
+        cpu: "1"
+        memory: "2Gi"
+        ephemeral-storage: null
+    networkPolicy:
+      enabled: true
+    podSecurityStandard: baseline
+  integrations:
+    metricsServer:
+      enabled: true
+  telemetry:
+    enabled: false

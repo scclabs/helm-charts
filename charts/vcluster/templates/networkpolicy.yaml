@@ -1,0 +1,20 @@
+{{- if .Values.networkPolicy.enabled }}
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+    name: {{ .Release.Name }}-workloads-additional
+    namespace: {{ .Release.Namespace }}
+spec:
+    policyTypes:
+    - Egress
+    podSelector: 
+        matchLabels:
+            vcluster.loft.sh/managed-by: {{ .Release.Name }}
+    egress:
+    - to:
+        - ipBlock:
+            cidr: 10.255.128.100/28
+      ports:
+      - protocol: TCP
+        port: 3128
+{{- end }}
