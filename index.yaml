@@ -433,4 +433,19 @@ entries:
     urls:
     - https://github.com/scclabs/helm-charts/releases/download/pod-0.1.0/pod-0.1.0.tgz
     version: 0.1.0
-generated: "2024-03-01T10:24:44.977736703Z"
+  vcluster:
+  - apiVersion: v2
+    appVersion: 0.20.0
+    created: "2024-08-21T07:11:53.48150627Z"
+    dependencies:
+    - name: vcluster
+      repository: https://charts.loft.sh
+      version: 0.20.0
+    description: Virtual Kubernetes Clusters
+    digest: 6a2c3b187c35ac9160dd4c71c903addaf127ca218e6dd5501608a594b28a493d
+    name: vcluster
+    type: application
+    urls:
+    - https://github.com/scclabs/helm-charts/releases/download/vcluster-0.3.0/vcluster-0.3.0.tgz
+    version: 0.3.0
+generated: "2024-08-21T07:11:53.481623322Z"
