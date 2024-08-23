@@ -2,7 +2,7 @@
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
-    name: {{ .Release.Name }}-workloads-additional
+    name: vc-addl-{{ .Release.Name }}
     namespace: {{ .Release.Namespace }}
 spec:
     policyTypes:
@@ -11,10 +11,22 @@ spec:
         matchLabels:
             vcluster.loft.sh/managed-by: {{ .Release.Name }}
     egress:
+    # Allows outgoing connections to the external http proxy
     - to:
         - ipBlock:
             cidr: 10.255.128.100/28
       ports:
       - protocol: TCP
         port: 3128
+    # Allows outgoing connections to the internal nginx ingress
+    - ports:
+      - port: 443
+        protocol: TCP
+      to:
+      - namespaceSelector:
+          matchLabels:
+            kubernetes.io/metadata.name: kube-system
+        podSelector:
+          matchLabels:
+            app.kubernetes.io/name: ingress-nginx
 {{- end }}
