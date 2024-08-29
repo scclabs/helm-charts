@@ -1,0 +1,7 @@
+Thank you for installing {{ .Chart.Name }}.
+
+This chart combines the MPI Operator and Training Operator.
+
+To verify the installation, run:
+
+  kubectl get pods -n {{ .Release.Namespace }}
