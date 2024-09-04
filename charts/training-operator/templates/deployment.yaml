@@ -1,0 +1,76 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "training-operator.fullname" . }}
+  labels:
+    {{- include "training-operator.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "training-operator.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "training-operator.selectorLabels" . | nindent 8 }}
+    spec:
+      serviceAccountName: {{ include "training-operator.serviceAccountName" . }}
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          command:
+            - /manager
+          args:
+            - --enable-scheme=tfjob
+            - --enable-scheme=pytorchjob
+            - --enable-scheme=mxjob
+            - --enable-scheme=xgboostjob
+            - --enable-scheme=paddlejob
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+
+{{- if .Values.mpiOperator.enabled }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "training-operator.fullname" . }}-mpi-operator
+  labels:
+    {{- include "training-operator.labels" . | nindent 4 }}
+    app.kubernetes.io/component: mpi-operator
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      {{- include "training-operator.selectorLabels" . | nindent 6 }}
+      app.kubernetes.io/component: mpi-operator
+  template:
+    metadata:
+      labels:
+        {{- include "training-operator.selectorLabels" . | nindent 8 }}
+        app.kubernetes.io/component: mpi-operator
+    spec:
+      serviceAccountName: {{ include "training-operator.serviceAccountName" . }}
+      containers:
+        - name: mpi-operator
+          image: "{{ .Values.mpiOperator.image.repository }}:{{ .Values.mpiOperator.image.tag }}"
+          imagePullPolicy: {{ .Values.mpiOperator.image.pullPolicy }}
+          args:
+          - -alsologtostderr
+          - --lock-namespace=mpi-operator
+          resources:
+            {{- toYaml .Values.mpiOperator.resources | nindent 12 }}
+{{- end }}

@@ -1,9 +1,0 @@
-dependencies:
-- name: mpi-operator-chart
-  repository: file://charts/mpi-operator-chart
-  version: 0.1.0
-- name: training-operator-chart
-  repository: file://charts/training-operator-chart
-  version: 0.1.0
-digest: sha256:66d731267e1efe881d474be8c379cdb7b73d37cf83c4ba57fb40600bc5d73bf9
-generated: "2024-08-29T13:42:25.053227+08:00"
