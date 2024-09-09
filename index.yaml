@@ -69,6 +69,16 @@ entries:
   training-operator:
   - apiVersion: v2
     appVersion: v1-855e096
+    created: "2024-09-09T03:28:01.42760143Z"
+    description: A Helm chart for Kubeflow Training Operator including MPI Operator
+    digest: d450f81e3423c18bed7c7ecaea067816cc3c13d3cc0f50bb575b2afd67776a47
+    name: training-operator
+    type: application
+    urls:
+    - https://github.com/scclabs/helm-charts/releases/download/training-operator-0.1.2/training-operator-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v2
+    appVersion: v1-855e096
     created: "2024-09-04T12:56:57.784110268Z"
     description: A Helm chart for Kubeflow Training Operator including MPI Operator
     digest: 48af52afcd1d3599c8405ee8766cd99e419c8ce8469257a838529ef1c37357e3
@@ -116,4 +126,4 @@ entries:
     urls:
     - https://github.com/scclabs/helm-charts/releases/download/vcluster-0.3.0/vcluster-0.3.0.tgz
     version: 0.3.0
-generated: "2024-09-04T12:56:57.784136026Z"
+generated: "2024-09-09T03:28:01.427620345Z"
