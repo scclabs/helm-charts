@@ -1,6 +1,0 @@
-apiVersion: v2
-name: training-operator
-description: A Helm chart for Kubeflow Training Operator including MPI Operator
-type: application
-version: 0.1.2
-appVersion: "v1-855e096"
