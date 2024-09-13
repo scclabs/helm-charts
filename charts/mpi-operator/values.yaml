@@ -1,0 +1,9 @@
+kubernetesClusterDomain: cluster.local
+mpiOperator:
+  mpiOperator:
+    image:
+      repository: mpioperator/mpi-operator
+      tag: 0.5.0
+  replicas: 1
+  serviceAccount:
+    annotations: {}

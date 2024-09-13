@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mpi-operator
+  labels:
+    app: mpi-operator
+    app.kubernetes.io/component: mpijob
+    kustomize.component: mpi-operator
+  {{- include "mpi-operator.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.mpiOperator.replicas }}
+  selector:
+    matchLabels:
+      app: mpi-operator
+      app.kubernetes.io/component: mpijob
+      app.kubernetes.io/name: mpi-operator
+      kustomize.component: mpi-operator
+    {{- include "mpi-operator.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        app: mpi-operator
+        app.kubernetes.io/component: mpijob
+        app.kubernetes.io/name: mpi-operator
+        kustomize.component: mpi-operator
+      {{- include "mpi-operator.selectorLabels" . | nindent 8 }}
+      annotations:
+        sidecar.istio.io/inject: "false"
+    spec:
+      containers:
+      - args: 
+        - -alsologtostderr
+        - --lock-namespace={{ .Release.Namespace }}
+        env:
+        - name: KUBERNETES_CLUSTER_DOMAIN
+          value: {{ quote .Values.kubernetesClusterDomain }}
+        image: {{ .Values.mpiOperator.mpiOperator.image.repository }}:{{ .Values.mpiOperator.mpiOperator.image.tag
+          | default .Chart.AppVersion }}
+        name: mpi-operator
+        resources: {}
+      serviceAccountName: mpi-operator

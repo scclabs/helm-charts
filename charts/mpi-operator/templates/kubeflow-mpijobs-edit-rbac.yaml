@@ -1,0 +1,26 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: kubeflow-mpijobs-edit
+  labels:
+    app: mpi-operator
+    app.kubernetes.io/component: mpijob
+    kustomize.component: mpi-operator
+    rbac.authorization.kubeflow.org/aggregate-to-kubeflow-edit: "true"
+    rbac.authorization.kubeflow.org/aggregate-to-kubeflow-mpijobs-admin: "true"
+  {{- include "mpi-operator.labels" . | nindent 4 }}
+rules:
+- apiGroups:
+  - kubeflow.org
+  resources:
+  - mpijobs
+  - mpijobs/status
+  verbs:
+  - get
+  - list
+  - watch
+  - create
+  - delete
+  - deletecollection
+  - patch
+  - update
