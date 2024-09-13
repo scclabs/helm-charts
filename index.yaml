@@ -66,6 +66,17 @@ entries:
     urls:
     - https://github.com/scclabs/helm-charts/releases/download/kubeflow-mpi-operator-0.1.0/kubeflow-mpi-operator-0.1.0.tgz
     version: 0.1.0
+  mpi-operator:
+  - apiVersion: v2
+    appVersion: 0.5.0
+    created: "2024-09-13T08:56:56.125980499Z"
+    description: A Helm chart for Kubernetes
+    digest: 15c0fdc10e8d505721af9b7553f75bf0ac2fdf9d60f90a9b25cc5e45b367406b
+    name: mpi-operator
+    type: application
+    urls:
+    - https://github.com/scclabs/helm-charts/releases/download/mpi-operator-0.5.0/mpi-operator-0.5.0.tgz
+    version: 0.5.0
   training-operator:
   - apiVersion: v2
     appVersion: v1-855e096
@@ -126,4 +137,4 @@ entries:
     urls:
     - https://github.com/scclabs/helm-charts/releases/download/vcluster-0.3.0/vcluster-0.3.0.tgz
     version: 0.3.0
-generated: "2024-09-09T03:28:01.427620345Z"
+generated: "2024-09-13T08:56:56.126004514Z"
