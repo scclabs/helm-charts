@@ -1,5 +1,0 @@
-Get the application URL:
-{{if .Values.ingress.enabled }}
-{{- $ingressHost := include "inference.ingressHost" . -}}
-* http{{ if $.Values.ingress.tls }}s{{ end }}://{{ $ingressHost }}
-{{- end }}
