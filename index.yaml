@@ -11,6 +11,21 @@ entries:
     urls:
     - https://github.com/scclabs/helm-charts/releases/download/mpi-operator-0.5.0-1/mpi-operator-0.5.0-1.tgz
     version: 0.5.0-1
+  training-operator:
+  - apiVersion: v2
+    appVersion: 1.8.1
+    created: "2024-09-14T06:02:33.801223661Z"
+    dependencies:
+    - name: mpi-operator
+      repository: https://scclabs.github.io/helm-charts
+      version: 0.5.0-1
+    description: A Helm chart for Kubernetes
+    digest: 465ae811a25c97829add8c750ffbfedb9b995979c0b74a93ff85276cf2c55b9a
+    name: training-operator
+    type: application
+    urls:
+    - https://github.com/scclabs/helm-charts/releases/download/training-operator-1.8.1-1/training-operator-1.8.1-1.tgz
+    version: 1.8.1-1
   vcluster:
   - apiVersion: v2
     appVersion: 0.20.0
@@ -54,4 +69,4 @@ entries:
     urls:
     - https://github.com/scclabs/helm-charts/releases/download/vcluster-0.3.0/vcluster-0.3.0.tgz
     version: 0.3.0
-generated: "2024-09-13T09:22:52.837044464Z"
+generated: "2024-09-14T06:02:33.801238008Z"
