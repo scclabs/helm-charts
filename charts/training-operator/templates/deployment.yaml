@@ -1,0 +1,77 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: training-operator
+  labels:
+    control-plane: kubeflow-training-operator
+  {{- include "training-operator.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.trainingOperator.replicas }}
+  selector:
+    matchLabels:
+      control-plane: kubeflow-training-operator
+    {{- include "training-operator.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        control-plane: kubeflow-training-operator
+      {{- include "training-operator.selectorLabels" . | nindent 8 }}
+      annotations:
+        sidecar.istio.io/inject: "false"
+    spec:
+      containers:
+      - command:
+        - /manager
+        args:
+        - --enable-scheme=tfjob
+        - --enable-scheme=pytorchjob
+        - --enable-scheme=mxjob
+        - --enable-scheme=xgboostjob
+        - --enable-scheme=paddlejob
+        env:
+        - name: MY_POD_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        - name: MY_POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        - name: KUBERNETES_CLUSTER_DOMAIN
+          value: {{ quote .Values.kubernetesClusterDomain }}
+        image: {{ .Values.trainingOperator.trainingOperator.image.repository }}:{{ .Values.trainingOperator.trainingOperator.image.tag
+          | default .Chart.AppVersion }}
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 8081
+          initialDelaySeconds: 15
+          periodSeconds: 20
+          timeoutSeconds: 3
+        name: training-operator
+        ports:
+        - containerPort: 8080
+        - containerPort: 9443
+          name: webhook-server
+          protocol: TCP
+        readinessProbe:
+          httpGet:
+            path: /readyz
+            port: 8081
+          initialDelaySeconds: 10
+          periodSeconds: 15
+          timeoutSeconds: 3
+        resources: {}
+        securityContext: {{- toYaml .Values.trainingOperator.trainingOperator.containerSecurityContext
+          | nindent 10 }}
+        volumeMounts:
+        - mountPath: /tmp/k8s-webhook-server/serving-certs
+          name: cert
+          readOnly: true
+      serviceAccountName: training-operator
+      terminationGracePeriodSeconds: 10
+      volumes:
+      - name: cert
+        secret:
+          defaultMode: 420
+          secretName: training-operator-webhook-cert

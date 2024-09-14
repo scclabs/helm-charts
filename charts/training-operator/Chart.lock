@@ -1,0 +1,6 @@
+dependencies:
+- name: mpi-operator
+  repository: https://scclabs.github.io/helm-charts
+  version: 0.5.0-1
+digest: sha256:20228ea154b9ea39659e30359f030e7ef38aeb87f10ff0eb2b9b6d7fd7c57496
+generated: "2024-09-13T17:41:35.593754+08:00"

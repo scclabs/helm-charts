@@ -1,0 +1,23 @@
+mpi-operator:
+  enabled: true
+
+kubernetesClusterDomain: cluster.local
+trainingOperator:
+  ports:
+  - name: monitoring-port
+    port: 8080
+    targetPort: 8080
+  - name: webhook-server
+    port: 443
+    protocol: TCP
+    targetPort: 9443
+  replicas: 1
+  serviceAccount:
+    annotations: {}
+  trainingOperator:
+    containerSecurityContext:
+      allowPrivilegeEscalation: false
+    image:
+      repository: kubeflow/training-operator
+      tag: v1-04f9f13
+  type: ClusterIP
