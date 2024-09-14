@@ -11,16 +11,6 @@ entries:
     urls:
     - https://github.com/scclabs/helm-charts/releases/download/mpi-operator-0.5.0/mpi-operator-0.5.0.tgz
     version: 0.5.0
-  - apiVersion: v2
-    appVersion: 0.5.0
-    created: "2024-09-13T09:14:18.300139825Z"
-    description: A Helm chart for Kubernetes
-    digest: 250c0104b6e87b680bd9eab90a82ba4607e3a3be4f70aac5dc74c4197d44595a
-    name: mpi-operator
-    type: application
-    urls:
-    - https://github.com/scclabs/helm-charts/releases/download/mpi-operator-0.5.0-1/mpi-operator-0.5.0-1.tgz
-    version: 0.5.0-1
   training-operator:
   - apiVersion: v2
     appVersion: 1.8.1
@@ -36,20 +26,6 @@ entries:
     urls:
     - https://github.com/scclabs/helm-charts/releases/download/training-operator-1.8.1/training-operator-1.8.1.tgz
     version: 1.8.1
-  - apiVersion: v2
-    appVersion: 1.8.1
-    created: "2024-09-14T06:02:33.801223661Z"
-    dependencies:
-    - name: mpi-operator
-      repository: https://scclabs.github.io/helm-charts
-      version: 0.5.0-1
-    description: A Helm chart for Kubernetes
-    digest: 465ae811a25c97829add8c750ffbfedb9b995979c0b74a93ff85276cf2c55b9a
-    name: training-operator
-    type: application
-    urls:
-    - https://github.com/scclabs/helm-charts/releases/download/training-operator-1.8.1-1/training-operator-1.8.1-1.tgz
-    version: 1.8.1-1
   vcluster:
   - apiVersion: v2
     appVersion: 0.20.0
@@ -65,46 +41,4 @@ entries:
     urls:
     - https://github.com/scclabs/helm-charts/releases/download/vcluster-0.20.0/vcluster-0.20.0.tgz
     version: 0.20.0
-  - apiVersion: v2
-    appVersion: 0.20.0
-    created: "2024-09-13T09:22:52.837025087Z"
-    dependencies:
-    - name: vcluster
-      repository: https://charts.loft.sh
-      version: 0.20.0
-    description: Virtual Kubernetes Clusters
-    digest: c4cd2264e9f3432ed60cca0918d9fcf0701345e38c78efaee3b8ef1691307476
-    name: vcluster
-    type: application
-    urls:
-    - https://github.com/scclabs/helm-charts/releases/download/vcluster-0.20.0-1/vcluster-0.20.0-1.tgz
-    version: 0.20.0-1
-  - apiVersion: v2
-    appVersion: 0.20.0
-    created: "2024-08-23T03:27:56.070191855Z"
-    dependencies:
-    - name: vcluster
-      repository: https://charts.loft.sh
-      version: 0.20.0
-    description: Virtual Kubernetes Clusters
-    digest: fd991a673d25e9426070113d371dc2f87d775bd6f9dce4299b13cd4bd03b3d7b
-    name: vcluster
-    type: application
-    urls:
-    - https://github.com/scclabs/helm-charts/releases/download/vcluster-0.3.1/vcluster-0.3.1.tgz
-    version: 0.3.1
-  - apiVersion: v2
-    appVersion: 0.20.0
-    created: "2024-08-21T07:11:53.48150627Z"
-    dependencies:
-    - name: vcluster
-      repository: https://charts.loft.sh
-      version: 0.20.0
-    description: Virtual Kubernetes Clusters
-    digest: 6a2c3b187c35ac9160dd4c71c903addaf127ca218e6dd5501608a594b28a493d
-    name: vcluster
-    type: application
-    urls:
-    - https://github.com/scclabs/helm-charts/releases/download/vcluster-0.3.0/vcluster-0.3.0.tgz
-    version: 0.3.0
 generated: "2024-09-14T06:21:35.006622715Z"
