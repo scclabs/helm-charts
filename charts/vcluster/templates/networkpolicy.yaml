@@ -14,7 +14,7 @@ spec:
     # Allows outgoing connections to the external http proxy
     - to:
         - ipBlock:
-            cidr: 10.255.128.100/28
+            cidr: 10.255.128.100/27
       ports:
       - protocol: TCP
         port: 3128
