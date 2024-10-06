@@ -6,17 +6,6 @@ networkPolicy:
   enabled: true
 
 vcluster:
-  sync:
-    fromHost:
-      ingressClasses:
-        enabled: true
-      storageClasses:
-        enabled: true
-    toHost:
-      ingresses:
-        enabled: true
-      persistentVolumes:
-        enabled: true
   # Configure vCluster's control plane components and deployment.
   controlPlane:
     distro:
