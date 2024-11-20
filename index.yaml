@@ -28,6 +28,20 @@ entries:
     version: 1.8.1
   vcluster:
   - apiVersion: v2
+    appVersion: 0.21.1
+    created: "2024-11-20T08:40:49.358501521Z"
+    dependencies:
+    - name: vcluster
+      repository: https://charts.loft.sh
+      version: 0.21.1
+    description: Virtual Kubernetes Clusters
+    digest: 3e927b783dc04487a02641ce0099bc88ff55af60612108aef7f05b70dd8e24aa
+    name: vcluster
+    type: application
+    urls:
+    - https://github.com/scclabs/helm-charts/releases/download/vcluster-0.21.1/vcluster-0.21.1.tgz
+    version: 0.21.1
+  - apiVersion: v2
     appVersion: 0.20.1
     created: "2024-10-06T08:33:09.645693155Z"
     dependencies:
@@ -55,4 +69,4 @@ entries:
     urls:
     - https://github.com/scclabs/helm-charts/releases/download/vcluster-0.20.0/vcluster-0.20.0.tgz
     version: 0.20.0
-generated: "2024-10-06T08:33:09.64570651Z"
+generated: "2024-11-20T08:40:49.358520457Z"
