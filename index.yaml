@@ -13,6 +13,16 @@ entries:
     version: 0.5.0
   sccai-deploy:
   - apiVersion: v2
+    appVersion: 0.3.0
+    created: "2025-03-24T09:07:25.238815072Z"
+    description: A Helm chart for deploying the sccai-deploy service
+    digest: d0d3555e04084d07fbf6cb935b34d1e93b1c40ebc909761e8c97c05c942779bc
+    name: sccai-deploy
+    type: application
+    urls:
+    - https://github.com/scclabs/helm-charts/releases/download/sccai-deploy-0.3.0/sccai-deploy-0.3.0.tgz
+    version: 0.3.0
+  - apiVersion: v2
     appVersion: 0.2.0
     created: "2025-03-24T08:38:14.062655744Z"
     description: A Helm chart for deploying the sccai-deploy service
@@ -90,4 +100,4 @@ entries:
     urls:
     - https://github.com/scclabs/helm-charts/releases/download/vcluster-0.20.0/vcluster-0.20.0.tgz
     version: 0.20.0
-generated: "2025-03-24T08:38:14.062674549Z"
+generated: "2025-03-24T09:07:25.238831963Z"
