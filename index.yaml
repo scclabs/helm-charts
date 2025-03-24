@@ -11,6 +11,17 @@ entries:
     urls:
     - https://github.com/scclabs/helm-charts/releases/download/mpi-operator-0.5.0/mpi-operator-0.5.0.tgz
     version: 0.5.0
+  sccai-deploy:
+  - apiVersion: v2
+    appVersion: 0.1.0
+    created: "2025-03-24T08:07:52.32632958Z"
+    description: A Helm chart for deploying the sccai-deploy service
+    digest: 65c94f35416902afdd5d07b303f6701f94a0ec4866244e927af26da669871248
+    name: sccai-deploy
+    type: application
+    urls:
+    - https://github.com/scclabs/helm-charts/releases/download/sccai-deploy-0.1.0/sccai-deploy-0.1.0.tgz
+    version: 0.1.0
   training-operator:
   - apiVersion: v2
     appVersion: 1.8.1
@@ -69,4 +80,4 @@ entries:
     urls:
     - https://github.com/scclabs/helm-charts/releases/download/vcluster-0.20.0/vcluster-0.20.0.tgz
     version: 0.20.0
-generated: "2024-11-20T08:40:49.358520457Z"
+generated: "2025-03-24T08:07:52.326341162Z"
