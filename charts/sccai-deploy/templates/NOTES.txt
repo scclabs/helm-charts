@@ -1,0 +1,3 @@
+{{- if include "sccai-deploy.fullname" . }}
+https://{{ include "sccai-deploy.fullname" . }}.{{ .Values.namespace }}.ai.zw1.paratera.com
+{{- end }}
