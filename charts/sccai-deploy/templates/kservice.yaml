@@ -4,7 +4,6 @@ metadata:
   labels:
     {{- include "sccai-deploy.labels" . | nindent 4 }}
   name: {{ include "sccai-deploy.fullname" . }}
-  namespace: {{ .Values.namespace }}
 spec:
   template:
     metadata:
@@ -47,8 +46,10 @@ spec:
       enableServiceLinks: false
       timeoutSeconds: {{ .Values.timeoutSeconds }}
       containerConcurrency: {{ .Values.containerConcurrency }}
+      {{- with .Values.securityContext }}
       securityContext:
-        {{- toYaml .Values.securityContext | nindent 8 }}
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       {{- with .Values.volumes }}
       volumes:
         {{- toYaml . | nindent 8 }}

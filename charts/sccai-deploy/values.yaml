@@ -12,8 +12,6 @@ imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
 
-namespace: default
-
 containerConcurrency: 100
 timeoutSeconds: 300
 
@@ -60,9 +58,6 @@ args: []
 ports:
   - containerPort: 8000
     protocol: TCP
-
-podSecurityContext: {}
-  # fsGroup: 2000
 
 securityContext: {}
   # capabilities:
